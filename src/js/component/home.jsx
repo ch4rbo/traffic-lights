@@ -1,24 +1,41 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
+import React, { useState } from "react";
 //create your first component
 const Home = () => {
+	const [isRedOn, setisRedOn] = useState(false);
+	const [isYellowOn, setisYellowOn] = useState(false);
+	const [isGreenOn, setisGreenOn] = useState(false);
+
+	const turnRedOn = () => {
+		setisRedOn(true);
+		setisYellowOn(false);
+		setisGreenOn(false);
+	};
+
+	const turnYellowOn = () => {
+		setisRedOn(false);
+		setisYellowOn(true);
+		setisGreenOn(false);
+	};
+
+	const turnGreenOn = () => {
+		setisRedOn(false);
+		setisYellowOn(false);
+		setisGreenOn(true);
+	};
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container">
+			<div className="semaforo">
+				<div
+					className={isRedOn ? "red active" : "red"}
+					onClick={turnRedOn}></div>
+				<div
+					className={isYellowOn ? "yellow active" : "yellow"}
+					onClick={turnYellowOn}></div>
+				<div
+					className={isGreenOn ? "green active" : "green"}
+					onClick={turnGreenOn}></div>
+			</div>
 		</div>
 	);
 };
